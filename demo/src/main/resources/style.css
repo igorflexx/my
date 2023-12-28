@@ -1,0 +1,351 @@
+body, html {
+    height: 100%;
+    background-color: black;
+    margin: 0;
+}
+
+body {
+    overflow: hidden;
+}
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+body:not(.hidden) .upper-footer,
+body:not(.hidden) .slider-container,
+body:not(.hidden) footer,
+body:not(.hidden) #background-video,
+body:not(.hidden) .logo-container {
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+
+
+
+
+/* Стили для кнопки переключения темы */
+.theme-switcher {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1001; /* Выше чем другие элементы */
+}
+
+/* Стили для иконок луны и солнца */
+#theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.moon-icon,
+.sun-icon {
+    margin-right: 10px;
+}
+
+/* Стили для темного режима */
+body.dark-mode {
+    background-color: black;
+}
+
+/* Стили для светлого режима */
+body.light-mode {
+    background-color: white;
+    color: black;
+
+}
+
+body.light-mode .upper-footer .logo img {
+    content: url('images/logo1.png');
+}
+
+/* Добавьте стили для логотипа в темном режиме */
+body.dark-mode .upper-footer .logo img {
+    content: url('images/logo.png');
+}
+
+
+body.light-mode .site-title {
+    color: black; /* Цвет текста в светлом режиме */
+    text-shadow: 2px 2px 2px black;
+}
+body.light-mode .controls img {
+    filter: brightness(0); /* Черный цвет стрелочек в светлом режиме */
+}
+body.light-mode footer {
+    color: black; /* Замените на желаемый цвет текста в светлом режиме */
+}
+
+
+
+.header {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.logo img {
+    width: 110px;
+    margin-left: 100px;
+    background-color: transparent;
+    filter: brightness(1); /* Исходная яркость логотипа */
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Белая подсветка */
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 1); /* Увеличиваем яркость подсветки */
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Возвращаемся к исходной подсветке */
+    }
+}
+
+
+.upper-footer .logo img {
+    width: 90px;
+
+}
+.upper-footer .logo img:hover {
+    animation: pulse 0.5s infinite; /* Применение анимации пульсации */
+    filter: brightness(1.2); /* Увеличивает яркость при наведении */
+}
+
+
+@keyframes shimmer {
+  0% {
+    color: white; /* Начальный цвет - синий */
+  }
+  50% {
+    color: white; /* Средний цвет */
+  }
+  100% {
+    color: white; /* Конечный цвет - снова синий */
+  }
+}
+
+@font-face {
+     font-family: 'Nelli.ttf';
+     src: url('images/Nelli.ttf') format('truetype');
+}
+
+.site-title {
+  font-family: 'Nelli.ttf';
+  font-stretch: normal;
+  color: white; /* Начальный цвет заголовка */
+  font-weight: bold;
+  text-shadow: 0px 0px 0px white;
+  margin-left: 10px;
+  background-color: transparent;
+  animation: shimmer 5s infinite; /* Применение анимации к тексту заголовка */
+}
+
+
+
+.slider-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    width:  960px ;
+    height:  640px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+}
+
+
+.slider {
+  width: 960px;
+  height:  640px;
+}
+
+.slider-img {
+    width: 960px;
+    height:640px;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+
+}
+
+
+.slider-img.active {
+  opacity: 1;
+  transform: translateX(0); /* Начальное положение */
+
+}
+/* Применить сдвиг при активации слайда */
+.slider-img.next {
+    transform: translateX(100%);
+}
+
+.slider-img.prev {
+    transform: translateX(-100%);
+}
+
+
+.controls {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.controls img {
+  height: 50px;
+  transition: filter 0.3s ease-in-out;
+}
+
+.controls img:hover {
+    filter: brightness(1.2); /* Увеличивает яркость при наведении */
+    transform: scale(1.7); /* Увеличивает размер при наведении */
+    animation: blink 1s infinite; /* Применение анимации при наведении */
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+.controls .prev {
+  margin-left: 310px;
+}
+
+.controls .next {
+  margin-right: 310px;
+}
+
+
+
+footer {
+    background-color: transparent;
+    color: white;
+    font-size: 11px;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden; /* Обрезаем лишнюю часть псевдоэлемента */
+    z-index: 1; /* Устанавливаем z-index выше видео, чтобы видеть анимацию */
+}
+
+footer::before {
+    content: ''; /* Создаем пустой контент для псевдоэлемента */
+    position: absolute;
+    top: -1px; /* Поднимаем псевдоэлемент на 1 пиксель, чтобы он перекрывал границу */
+    left: 0;
+    width: 100%;
+    height: 2px; /* Высота полоски */
+    background: linear-gradient(to right, transparent, white, transparent); /* Градиент для переливающейся полоски */
+    animation: shimmerBorder 5s infinite linear; /* Добавляем анимацию к градиенту */
+}
+
+@keyframes shimmerBorder {
+    0% {
+        background-position: 100% 0; /* Начальная позиция градиента (крайнее правое положение) */
+    }
+    100% {
+        background-position: -100% 0; /* Конечная позиция градиента (крайнее левое положение) */
+    }
+}
+
+
+
+.upper-footer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: transparent;
+    z-index: 1000;
+}
+
+.upper-footer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: transparent;
+    z-index: 1000;
+}
+
+
+
+
+
+
+.upper-footer .site-title {
+    color: white;
+    letter-spacing: 4px;
+    font-size: 40px;
+    text-shadow: 1px 5px 23px white;
+    margin-left: 10px;
+}
+
+
+.swal2-title {
+    color: white; /* Замените на желаемый цвет */
+    font-size: 16px;
+}
+.swal2-popup {
+    color: white; /* Замените на желаемый цвет */
+    font-size: 16px;
+}
+
+.swal2-confirm {
+    background-color: red !important;
+}
+
+
+

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>ISPANIO</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Ссылка на SweetAlert -->
+
+    <style>
+        /* Добавьте следующие стили для красивого диалога */
+        .my-custom-popup {
+            background-color: #fff; /* Цвет фона диалога */
+            border-radius: 30px; /* Закругленные углы */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Тень */
+        }
+
+
+        /* Добавьте следующие стили для анимации кивания головой */
+        .my-custom-popup img {
+            animation: headNod 2s infinite alternate;
+            transform-origin: center bottom;
+        }
+
+        @keyframes headNod {
+            0% {
+                transform: rotate(-10deg);
+            }
+            100% {
+                transform: rotate(10deg);
+            }
+        }
+
+    </style>
+
+    <script>
+        function showDialog() {
+
+
+            Swal.fire({
+                title: 'У тебя сомнения?',
+                text: 'Я тут заметил, что ты испытываешь трудности в выборе, Тебе помочь?)',
+                iconHtml: '<img src="images/dialogIcon.png" alt="dialogIcon" width="150" height="150">',
+                showCancelButton: true,
+                confirmButtonText: 'Да',
+                cancelButtonText: 'Нет',
+                customClass: {
+                    popup: 'my-custom-popup',
+                    confirmButton: 'btn-success',
+                    cancelButton: 'btn-danger'
+                },
+                background: '#000',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    console.log('Пользователь выбрал "Да"');
+                    window.location.href = 'Denis.html';
+                } else {
+                    console.log('Пользователь выбрал "Нет"');
+
+                }
+
+                // Set timer for the next call
+                setTimeout(showDialog, 60000);
+            });
+        }
+
+        window.onload = function () {
+            setTimeout(showDialog, 20000);
+        }
+    </script>
+</head>
+
+<body class="hidden">
+
+
+
+<!-- Замените текст на иконки луны и солнца -->
+<div class="theme-switcher">
+    <button id="theme-toggle">
+        <span class="moon-icon">🌙</span>
+        <span class="sun-icon">☀️</span>
+    </button>
+</div>
+
+
+
+<div class="upper-footer">
+    <div class="logo-container">
+        <div class="logo">
+            <img src="images/dark-logo.png" alt="Logo">
+        </div>
+    </div>
+    <div class="site-title"></div>
+</div>
+
+
+
+<!-- Блок загрузки -->
+<div class="loader">
+    <div class="loading-container">
+        <div class="loading-circle"></div>
+        <div class="loading-line"></div>
+        <div class="loading-triangle"></div>
+    </div>
+    <img src="images/loading.png" alt="Loading">
+</div>
+
+
+<a id="myn" href="">
+
+<div class="slider-container">
+    <div class="slider">
+            <img class='slider-img' src="images/1.jpg" alt="Pavel.html">
+
+            <img class='slider-img' src="images/2.jpg" alt="Denis.html">
+
+            <img class='slider-img' src="images/3.jpg" alt="ivan.html">
+
+            <img class='slider-img' src="images/4.jpg" alt="flexx.html">
+
+            <img class='slider-img' src="images/5.PNG" alt="Said.html">
+
+    </div>
+</div>
+</a>
+
+<div class="controls">
+    <img class="prev" src="images/left.png" alt="">
+    <img class="next" src="images/right.png" alt="">
+</div>
+
+<footer>
+    <p>&copy; PRODUCT BY ISPANIO TEAM 2023</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
+
+
+
